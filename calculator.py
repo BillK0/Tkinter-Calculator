@@ -27,30 +27,33 @@ ls = ['AC', '( )', '%', '÷',
 
 def write_number(x):
     global bracket
-    if x in [str(s) for s in range(0, 10)] and lbl1['text']=='0':
-        lbl1['text']=x
-    elif x == '( )' and bracket == 'open':
-        lbl1['text']+='('
-        bracket = 'close'
-    elif x == '( )' and bracket == 'close':
-        lbl1['text']+=')'
-        bracket = 'open'
-    elif x == '⌫':
-        lbl1['text'] = lbl1['text'][:len(lbl1['text'])-1]
-    elif x == 'AC':
-        lbl1['text'] = '0'
-    elif x == '=':
-        expression = ''
-        for char in lbl1['text']:
-            if char == '÷':
-                expression += '/'
-            elif char == 'X':
-                expression += '*'
-            else:
-                expression += char
-        lbl1['text'] = str(eval(expression))
-    else:
-        lbl1['text']+=x
+    try:
+        if x in [str(s) for s in range(0, 10)] and lbl1['text']=='0':
+            lbl1['text']=x
+        elif x == '( )' and bracket == 'open':
+            lbl1['text']+='('
+            bracket = 'close'
+        elif x == '( )' and bracket == 'close':
+            lbl1['text']+=')'
+            bracket = 'open'
+        elif x == '⌫':
+            lbl1['text'] = lbl1['text'][:len(lbl1['text'])-1]
+        elif x == 'AC':
+            lbl1['text'] = '0'
+        elif x == '=':
+            expression = ''
+            for char in lbl1['text']:
+                if char == '÷':
+                    expression += '/'
+                elif char == 'X':
+                    expression += '*'
+                else:
+                    expression += char
+            lbl1['text'] = str(eval(expression))
+        else:
+            lbl1['text']+=x
+    except:
+        lbl1['text'] = 'Error'
 
 btn_list = []
 
